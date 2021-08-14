@@ -1,21 +1,59 @@
-<title>WYY的网站</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
-<body style="background-color: rgb(58,110,165);">
-  <div style="text-align:center;">
-    <p style="font-size:0px">Jumping Home</p>
-  </div>
-  <script type="text/javascript">
-  onload=function(){
-    var url = "http://jp-tyo-ilj-1.natfrp.cloud:39418/";
-    var url2 = "http://jp-tyo-dvm.sakurafrp.com:39418/";
-    console.log("there are 2 addresses for you to choose. If one of them can't be used, you can use another one.");
-    console.log("The first:");
-    console.log(url);
-    console.log("The second:");
-    console.log(url2);
-    setTimeout(function(){ self.location.href=url;}, 50);
-    setTimeout(function(){ self.location.href=url;}, 200);
-    setTimeout(function(){ self.location.href=url;}, 3000);
-  };
-  </script>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>数字摄影</title>
+        <style>
+            .pic{
+                width: 80%;
+                margin: 0 auto;
+                text-align: center;
+                background-color: rgb(241, 241, 241);
+                -webkit-box-shadow: #ccc 0px 10px 10px;
+                -moz-box-shadow: #ccc 0px 10px 10px;
+                box-shadow: #ccc 0px 10px 10px;
+            }
+            .pic:hover{
+                -webkit-box-shadow: #ccc 0px 20px 20px;
+                -moz-box-shadow: #ccc 0px 20px 20px;
+                box-shadow: #ccc 0px 20px 20px; 
+            }
+            .text{
+                font-family: "仿宋";
+                font-size: large;
+                text-indent: 1em;
+                margin-top: 4px;
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-bottom: 30px;
+            }
+            img{
+                width: 100%;
+            }
+            body{
+                background-color: seashell;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    </head>
+    <body>
+        <div class="pic">
+            <img src="1.jpg">
+            <p class="text">翠屏山这里我来过无数次了，但总能发现新的美景。两棵不算粗壮的松树，配上以下的绿植，那朵云似乎就要住在这幅画面中的松树之间，真是巧妙的天工。</p>
+        </div>
+
+        <div class="pic">
+            <img src="3.jpg">
+            <p class="text">炎热的夏天，骄阳似火。在绿树和楼房的陪衬下，阳光是那样的令人振奋，令人心情十分舒畅。</p>
+        </div>
+
+        <div class="pic">
+            <img src="2.jpg">
+            <p class="text">假期刚过三分之一，本想出去旅游，谁知疫情又突然降临。在回小区做第一次核酸检测的路上，看见这样一幅景色——万丈金光穿破云层的阻碍射向天边，心里的那根紧绷到极点的弦似乎放松了一点，心里又重新充满了希望。</p>
+        </div>
+        
+        <div class="pic">
+            <img src="4.jpg">
+            <p class="text">这片大草坪是我们一家晚饭后常来的地方。傍晚，一切被黑暗笼罩，但是路边一盏盏的灯光照亮了前方的路。光亮由近到远，逐渐暗淡，但依然在发着它自己的光。</p>
+        </div>
+    </body>
+</html>
