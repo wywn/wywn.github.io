@@ -1,0 +1,31 @@
+<script>
+function getQueryVariable(variable){
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+       return(false);
+}
+function request(url){
+    var xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        var data = xhr.responseText;
+        data = data.replace("/href=\"..\/t\/\"/g", 'href=\"./\"');
+        document.write(data); 
+    }
+
+    xhr.onerror = function () {
+        //document.getElementById("infBox").innerHTML="请求出错";
+        return "failed"
+    }
+
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+}
+var site = "http://1.15.19.179/gal/t/";
+request(site+window.location.search);
+</script>
