@@ -1,0 +1,65 @@
+<head>
+<title>WYY的网站</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+<style>
+    #main{
+        /*background-image: url("https://heaven-burns-red.com/assets/images/common/character/31c/kv.jpg");*/
+        -webkit-background-size: cover;
+        -o-background-size: cover;                
+        background-size: cover;
+        width: 105%;
+        height: 105%;
+        margin-left: -20px;
+        margin-top: -20px;
+        margin-right: -20px;
+        margin-bottom: -20px;
+        padding: 20px;
+    }
+    .hide{
+        display: none;
+        opacity: 0;
+    }
+    #body{
+        overflow: hidden;
+    }
+</style>
+<script type="text/javascript">
+    onload=function(){
+        /*var url = "http://1.15.19.179/";
+        var url2 = "https://1.15.19.179/";
+        setTimeout(function(){ self.location.href=url;}, 50);
+        setTimeout(function(){ self.location.href=url;}, 200);
+        setTimeout(function(){ self.location.href=url;}, 3000);*/
+        document.getElementById("main").style.display = "block";
+        var opt = 0;
+        var t = setInterval(function(){
+            opt = opt + 0.02;
+            document.getElementById("main").style.opacity = opt;
+            if (opt >= 1){
+                clearInterval(t);
+                
+                document.getElementById("d1").style.display = "block";
+                var opt1 = 0;
+                var t1 = setInterval(function(){
+                    opt1 = opt1 + 0.02;
+                    document.getElementById("d1").style.opacity = opt1;
+                    if (opt1 >= 1){
+                        clearInterval(t1);
+                    }
+                },20);
+
+            }
+        },20);
+    };
+    
+    </script>
+</head>
+<body id="body">
+    <div id="main" class="hide">
+        <div id="d1" class="hide">
+        <h1>复制以下链接到浏览器</h1>
+        <big>http://1.15.19.179/gal/t/?m=v&id=1</big>
+     
+</div>
+    </div>
+</body>
