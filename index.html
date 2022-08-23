@@ -7,7 +7,45 @@
     <div class="container mt-3">
         <center>
         <h2>跳转</h2>
-        <a class="btn btn-secondary" href="http://124.70.81.198/">前往主站</a>
+        <a class="btn btn-secondary" id="go">前往主站</a>
+        <br><br>
+        <div id="copyText"></div>
         </center>
     </div>
+    <script>
+        var url = "http://124.70.81.198/";
+
+        function GetQueryString(name) { 
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = ""; 
+            if (r != null) 
+                context = r[2]; 
+            reg = null; 
+            r = null; 
+            return context == null || context == "" || context == "undefined" ? "" : context; 
+        }
+
+        var showedLink = false;
+        var ifShowCopy = GetQueryString("copy");
+
+        document.getElementById("go").onclick = function(){
+            if (ifShowCopy == "true"){
+                if (showedLink == false){
+                    var h2 = document.createElement("h4");
+                    h2.innerHTML = "请复制以下链接到浏览器里打开";
+                    var div = document.createElement("div");
+                    div.innerHTML = url;
+                    div.className = "card p-2";
+                    var parent = document.getElementById("copyText");
+                    parent.appendChild(h2);
+                    parent.appendChild(div);
+                    showedLink = true;
+                }
+            }
+            else{
+                window.location.href = url;
+            }
+        }
+    </script>
 </body>
