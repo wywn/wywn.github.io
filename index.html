@@ -13,7 +13,7 @@
         </center>
     </div>
     <script>
-        /*var url = "http://124.70.81.198/";
+        var url = "http://124.70.81.198/";
 
         function GetQueryString(name) { 
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
@@ -26,11 +26,23 @@
             return context == null || context == "" || context == "undefined" ? "" : context; 
         }
 
+        var Browser = '';
+        var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+      	if (ua.match(/MicroMessenger/i) == "micromessenger") {
+      	    Browser = 'WX';
+      	}
+      	else if(navigator.userAgent.indexOf('UCBrowser') > -1){
+      	    Browser = 'UC';
+      	}
+      	else if(navigator.userAgent.indexOf('MQQBrowser') > -1){
+      	    Browser = 'QQ';
+      	}
+  
         var showedLink = false;
         var ifShowCopy = GetQueryString("copy");
 
         document.getElementById("go").onclick = function(){
-            if (ifShowCopy == "true"){
+            if (ifShowCopy == "true" || Browser == "QQ"){
                 if (showedLink == false){
                     var h2 = document.createElement("h4");
                     h2.innerHTML = "请复制以下链接到浏览器里打开";
@@ -46,8 +58,6 @@
             else{
                 window.location.href = url;
             }
-        }*/
-        
-        window.location.href = "https://wyy.kiikku.repl.co/";
+        }
     </script>
 </body>
