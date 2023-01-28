@@ -2,6 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <title>跳转</title>
 <body class="bg-light">
     <div class="container mt-3">
@@ -12,6 +15,25 @@
         <div id="copyText"></div>
         </center>
     </div>
+    <div>
+    <script>
+        var meting_api = "api/meting/?server=:server&type=:type&id=:id"
+    </script>
+    <meting-js 
+        server="netease" 
+        type="playlist" 
+        id="6719874011"
+        fixed="true" 
+        mini="true" 
+        autoplay="true"
+        loop="all"
+        order="random"
+        preload="auto"
+        list-folded="ture"
+        list-max-height="500px"
+        lrc-type="1">
+    </meting-js>	
+</div>
     <script>
         var url = "http://124.70.81.198/";
 
