@@ -53,8 +53,13 @@
                     parent.appendChild(h2);
                     parent.appendChild(div);
                     
+                    parent.appendChild(document.createElement("br"))
+                    
                     var div2 = document.createElement("div");
                     div2.innerHTML = "不信邪的点";
+                    div2.onclick = function(){
+                        window.location.href = url;
+                    }
                     div2.className = "btn btn-secondary";
                     parent.appendChild(div2);
                     
