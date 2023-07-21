@@ -1,3 +1,4 @@
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +36,7 @@
     </meting-js>	
 </div>
     <script>
-        var url = "http://124.70.81.198/";
+        var url = "http://47.96.131.159/";
 
         function GetQueryString(name) { 
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
@@ -62,6 +63,10 @@
   
         var showedLink = false;
         var ifShowCopy = GetQueryString("copy");
+        var jump = GetQueryString("j");
+        if (jump != ""){
+            url = decodeURIComponent(jump);
+        }
 
         document.getElementById("go").onclick = function(){
             if (ifShowCopy == "true" || Browser == "QQ"){
