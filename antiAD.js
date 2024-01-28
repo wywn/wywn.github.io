@@ -3,4 +3,4 @@ if (window.location.host == "wyywn.qq.us.kg"){
         document.querySelector("body > cloudflare-app").remove();
         clearInterval(i);
     },100);
-}
+} 
