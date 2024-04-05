@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>html5调用摄像头截图</title>
+</head>
+<body>
+    <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+    <br> 
+    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
+    <input type="button" title="关闭摄像头" value="关闭摄像头" onclick="stopMedia(video)" />
+    <button id="snap" onclick="takePhoto()">拍照</button>
+    <script>
+        function getMedia() {
+            let constraints = {
+                video: { width: 500, height: 500 },
+                audio: true
+            };
+
+            // 请求权限
+            navigator.permissions.query({ name: 'camera' })
+                .then(function(permissionStatus) {
+                    if (permissionStatus.state === 'granted') {
+                        // 权限已授予
+                        startMedia(constraints);
+                    } else if (permissionStatus.state === 'prompt') {
+                        // 需要用户授权
+                        navigator.mediaDevices.getUserMedia(constraints)
+                            .then(function (stream) {
+                                permissionStatus.onchange = function() {
+                                    if (permissionStatus.state === 'granted') {
+                                        startMedia(constraints);
+                                    } else {
+                                        console.log('用户拒绝了权限请求');
+                                    }
+                                };
+                            })
+                            .catch(function (err) {
+                                console.log('获取媒体流失败：', err);
+                            });
+                    } else {
+                        console.log('用户拒绝了权限请求');
+                    }
+                });
+        }
+
+        function startMedia(constraints) {
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function (stream) {
+                    let video = document.getElementById("video");
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function (err) {
+                    console.log('获取媒体流失败：', err);
+                });
+        }
+ 
+        function takePhoto() {
+            //获得Canvas对象
+            //let video = document.getElementById("video");
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext('2d');
+            //绘图
+            ctx.drawImage(video, 0, 0, 300, 300);
+        }
+ 
+        function stopMedia(videoElem) {
+            const stream = videoElem.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(function(track) {
+                track.stop();  //停止视频流
+            });
+ 
+            videoElem.srcObject = null;  
+        } 
+    </script>
+</body>
+</html>
