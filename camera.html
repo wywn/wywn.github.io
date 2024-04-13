@@ -2,16 +2,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>html5调用摄像头截图</title>
+    <title>HTML5调用摄像头截图</title>
 </head>
 <body>
-    <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
     <canvas id="canvas" width="500px" height="500px"></canvas>
     <br> 
-    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
-    <input type="button" title="关闭摄像头" value="关闭摄像头" onclick="stopMedia(video)" />
+    <input type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()" />
+    <input type="button" title="关闭摄像头" value="关闭摄像头" onclick="stopMedia()" />
     <button id="snap" onclick="takePhoto()">拍照</button>
     <script>
+        let videoStream;
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext('2d');
+
         function getMedia() {
             let constraints = {
                 video: { width: 500, height: 500 },
@@ -48,32 +51,37 @@
         function startMedia(constraints) {
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
-                    let video = document.getElementById("video");
-                    video.srcObject = stream;
-                    video.play();
+                    videoStream = stream;
+                    drawVideo();
                 })
                 .catch(function (err) {
                     console.log('获取媒体流失败：', err);
                 });
         }
- 
-        function takePhoto() {
-            //获得Canvas对象
-            //let video = document.getElementById("video");
-            let canvas = document.getElementById("canvas");
-            let ctx = canvas.getContext('2d');
-            //绘图
-            ctx.drawImage(video, 0, 0, 300, 300);
+
+        function drawVideo() {
+            // 绘制视频流到Canvas上
+            setInterval(function() {
+                if (videoStream) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(videoStream.getVideoTracks()[0], 0, 0, canvas.width, canvas.height);
+                }
+            }, 100);
         }
- 
-        function stopMedia(videoElem) {
-            const stream = videoElem.srcObject;
-            const tracks = stream.getTracks();
-            tracks.forEach(function(track) {
-                track.stop();  //停止视频流
-            });
- 
-            videoElem.srcObject = null;  
+
+        function takePhoto() {
+            // 绘制当前画面到Canvas
+            ctx.drawImage(videoStream.getVideoTracks()[0], 0, 0, canvas.width, canvas.height);
+        }
+
+        function stopMedia() {
+            if (videoStream) {
+                const tracks = videoStream.getTracks();
+                tracks.forEach(function(track) {
+                    track.stop();  //停止视频流
+                });
+                videoStream = null;
+            }
         } 
     </script>
 </body>
