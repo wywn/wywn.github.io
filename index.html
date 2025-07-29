@@ -1,4 +1,4 @@
-<script>
+<!--<script>
 function GetQueryString(name) { 
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
   var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
@@ -15,4 +15,38 @@ if (GetQueryString("jump") == "class3_video"){
 else{
   window.location.href = "https://wyywn.eu.org/";
 }
+</script>-->
+
+<h2>您正在访问</h2>
+<p id="local"></p>
+<h2>正在前往新域名</h2>
+<p id="target"></p>
+<p id="seconds">3</p>
+<script>
+
+var targetBase="https://wyywn.site/";
+
+var local = window.location.href;
+document.getElementById("local").innerHTML = local;
+var arr = local.split("/")
+var suffix = ""
+for (var i = 3;i < arr.length;i++){
+  suffix += arr[i] + "/"
+}
+suffix = suffix.slice(0,suffix.length-1)
+var target = targetBase + suffix;
+document.getElementById("target").innerHTML = target;
+
+var seconds = 2;
+var ele = document.getElementById("seconds");
+var intervar = setInterval(function(){
+  if (seconds == 0){
+    window.location.href = target;
+    clearInterval(intervar);
+    seconds = "加载中";
+  }
+  ele.innerHTML = seconds;
+  seconds = seconds - 1;
+},1000);
+
 </script>
